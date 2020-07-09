@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import styled from '@emotion/styled';
 
 import Header from './components/Header';
 import Form from './components/Form';
+import Resume from './components/Resume';
+import Result from './components/Result';
+
 
 const Container = styled.div`
   max-width: 600px;
@@ -17,13 +20,31 @@ const FormContainer = styled.div`
 `;
 
 const App = () => {
+  const [resume, setResume] = useState({
+    result: 0,
+    data: {
+      company: '',
+      year: '',
+      plan: ''
+    }
+  });
+
+
   return (
     <Container>
       <Header
         title="Insurance carrier"
       />
       <FormContainer>
-        <Form />
+        <Form 
+          saveResume={setResume}
+        />
+        <Resume
+          data={resume.data}
+        />
+        <Result
+          result={resume.result}
+        />
       </FormContainer>
     </Container> 
   );
